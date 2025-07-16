@@ -1,6 +1,9 @@
+if arg[2] == "debug" then
+    require("lldebugger").start()
+end
 -- Tamanho da janela
-largura_janela = 800
-altura_janela = 600
+largura_janela = 1760
+altura_janela = 960
 
 -- Personagem
 personagem = {
@@ -17,20 +20,18 @@ function love.load()
 end
 
 function love.update(dt)
-   movements()
+   Movements(dt)
 end
 
 function love.draw()
-    -- love.graphics.setColor(1, 0.5, 0.2) -- cor laranja
-    -- love.graphics.rectangle("fill", personagem.x, personagem.y, personagem.largura, personagem.altura)
+    love.graphics.setColor(1, 0.5, 0.2) -- cor laranja
+    love.graphics.rectangle("fill", personagem.x, personagem.y, personagem.largura, personagem.altura)
 
-    -- love.graphics.setColor(1, 1, 1)
-    -- love.graphics.print("Usa as setas ou WASD para moveres o quadrado!", 10, 10)
-    
-    love.graphics.print("Hello World", 400, 300)
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.print("Usa as setas ou WASD para moveres o quadrado!", 10, 10)
 end
 
-function movements()
+function Movements(dt)
 if love.keyboard.isDown("right") or love.keyboard.isDown("d") then
         personagem.x = personagem.x + personagem.velocidade * dt
     end
@@ -42,5 +43,14 @@ if love.keyboard.isDown("right") or love.keyboard.isDown("d") then
     end
     if love.keyboard.isDown("up") or love.keyboard.isDown("w") then
         personagem.y = personagem.y - personagem.velocidade * dt
+    end
+end
+local love_errorhandler = love.errorhandler
+
+function love.errorhandler(msg)
+    if lldebugger then
+        error(msg, 2)
+    else
+        return love_errorhandler(msg)
     end
 end
