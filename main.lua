@@ -26,7 +26,7 @@ function love.update(dt)
 end
 
 function love.draw()
-    love.graphics.setColor(1, 0.5, 0.2) -- cor laranja
+    love.graphics.setColor(1, 0.6, 0.2) -- cor laranja
     love.graphics.rectangle("fill", Character.x, Character.y, Character.width, Character.height)
 
     love.graphics.setColor(1, 1, 1)
