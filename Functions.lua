@@ -27,3 +27,4 @@ function functions.Audio()
      Sound_test:play()
  love.audio.setVolume(0.4)
 end
+return functions
